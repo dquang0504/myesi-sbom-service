@@ -1,0 +1,16 @@
+services:
+  sbom:
+    build: .
+    ports: ["8002:8002"]
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: myesi
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: myesi_db
+  redis:
+    image: redis:7
